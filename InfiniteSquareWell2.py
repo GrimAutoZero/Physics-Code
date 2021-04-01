@@ -18,7 +18,7 @@ Sets up grid as well as defines constants
 numpoints = 10
 spacegrid = np.linspace(0,L,numpoints+1)
 dx = spacegrid[1] - spacegrid[0]
-const = -((hbar)**2)/(2*mass*dx**2)
+const = ((hbar)**2)/(2*mass*dx**2)
 
 '''
 Potential function
@@ -34,7 +34,7 @@ listoftwos =[(-2*np.ones(numpoints+1)).tolist()]
 H1 = diags(listofones, [1]).toarray()
 H2 = diags(listofones, [-1]).toarray()
 H3 = diags(listoftwos, [0]).toarray()
-H = H1+H2+H3
+H = const*(H1+H2+H3)
 
 for i in [0,numpoints]:
     H[:,i] = 0
