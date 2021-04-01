@@ -15,7 +15,7 @@ L = 1
 Sets up grid as well as defines constants
 '''
 
-numpoints = 10
+numpoints = 3000
 spacegrid = np.linspace(0,L,numpoints+1)
 dx = spacegrid[1] - spacegrid[0]
 const = ((hbar)**2)/(2*mass*dx**2)
@@ -28,8 +28,8 @@ def U(x):
 '''
 Sets up hamiltonian
 '''
-listofones = [np.ones(numpoints).tolist()]
-listoftwos =[(-2*np.ones(numpoints+1)).tolist()]
+listofones = [(-np.ones(numpoints)).tolist()]
+listoftwos =[(2*np.ones(numpoints+1)).tolist()]
 
 H1 = diags(listofones, [1]).toarray()
 H2 = diags(listofones, [-1]).toarray()
@@ -40,9 +40,10 @@ for i in [0,numpoints]:
     H[:,i] = 0
 
 w,v = np.linalg.eigh(H)
-print(w)
-plt.plot(spacegrid,(v[:,0])/np.sqrt(dx))
-plt.show()
 
-plt.plot(spacegrid,(v[:,0]/np.sqrt(dx)**2))
-plt.show()
+
+
+plt.plot(spacegrid,(v[:,2])/np.sqrt(dx))
+print(w[2])
+
+
